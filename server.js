@@ -15,5 +15,13 @@ app.get('/:room', (req, res) => {
     res.render('room', { roomId: req.params.room })
 });
 
+io.on('connection', socket => {
+
+    socket.on('join-room', (roomId, userId) => {
+        console.log(roomId, userId);
+    });
+
+});
+
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => console.log(`App running on port: ${PORT}`));
